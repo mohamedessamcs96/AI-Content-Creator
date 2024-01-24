@@ -1,0 +1,12 @@
+asgiref==3.6.0
+Django==4.2.1
+django-cors-middleware==1.5.0
+freetype-py==2.3.0
+Pillow==9.5.0
+pycairo==1.23.0
+python-bidi==0.4.2
+rlPyCairo==0.2.0
+rtl==0.4.3
+six==1.16.0
+sqlparse==0.4.4
+whitenoise==6.4.0

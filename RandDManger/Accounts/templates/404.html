@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+<!Doctype html>
+<html>
+    <head>
+      <style>
+    </style>
+    </head>
+    <body style="
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+    ">
+        {% block content %}        
+
+        <div class="page-section pt-5">
+            <div style="  text-align: center;
+            max-width: 600px;"
+             class="container">
+              <div class="row">
+                <div style="
+                font-size: 8rem;
+                margin-bottom: 20px;"
+                 class="emoji">😕</div>
+                <h1 style="font-size: 3rem;
+                margin-bottom: 20px;">
+              Oops! Page Not Found</h1>
+                <p style="font-size: 1.5rem;margin-bottom: 20px;">
+                We couldn't find the page you were looking for.</p>
+                <a style="font-size: 1.25rem;
+                padding: 10px 20px;"
+                 class="btn btn-primary" href="/ar/">Go back to Home</a>
+        </div>
+      </div>
+    </div>
+        {% endblock %}
+    </body>
+</html>
+
+

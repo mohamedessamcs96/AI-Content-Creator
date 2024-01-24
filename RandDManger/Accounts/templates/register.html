@@ -1,0 +1,79 @@
+{% extends 'index.html' %}
+{% load static %}
+<!Doctype html>
+<html>
+    <head></head>
+    <body>
+        {% block content %}  
+
+    <section class="container">
+      <div class="page-container">
+        <div class="page-content">
+          <div class="card">
+      {% include 'partials/messages.html' %}
+      <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Write Your Comment</a></h6>
+      <hr>
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+          <div class="form-row">
+       
+              <div class="col-sm-4 form-group">
+                <label for="fullName">Email</label>
+                {{register_form.email}}
+              </div>
+              <div class="col-sm-4 form-group">
+                <label for="fullName">Username</label>
+                {{register_form.username}}
+                </div>
+              <div class="col-sm-4 form-group">
+                <label for="fullName">First Name</label>
+                {{register_form.fname}}
+              </div>    
+              <div class="col-sm-4 form-group">
+                <label for="fullName">Last Name</label>
+
+                {{register_form.lname}}              
+              </div>    
+              <div class="col-sm-4 form-group">
+                <label for="fullName">Gender</label>
+                {{register_form.gender}}  
+              </div>     
+              <div class="col-sm-4 form-group">
+                <label for="fullName">Birthdate</label>
+                {{register_form.birthdate}}
+              </div>    
+              <div class="col-sm-4 form-group">
+                <label  for="fullName">Is Staff</label>
+                {{register_form.is_staff}}
+              </div>     
+              <div class="col-sm-4 form-group">
+                <label  for="fullName">Is Staff</label>
+                {{register_form.is_staff}}
+              </div>    
+              <div class="col-sm-4 form-group">
+                <label for="fullName">Is Admin</label>{{register_form.is_admin}} 
+              </div>      
+              <div class="col-sm-4 form-group">
+                <label for="fullName">Password</label>
+                {{register_form.password1}}
+              </div>   
+              <div class="col-sm-4 form-group">
+                <label for="fullName">Password Again</label>
+                {{register_form.password2}}
+              </div>   
+              <div class="form-group col-12">
+                  <button class="btn btn-primary btn-block">Register User</button>
+              </div>
+          </div>
+      </form>
+  </div>                  
+</div> 
+</div>
+</section>
+
+        {% endblock %}
+    </body>
+</html>
+
+
+

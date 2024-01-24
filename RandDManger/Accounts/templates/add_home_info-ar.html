@@ -1,0 +1,51 @@
+{% extends 'index-ar.html' %}
+
+
+{% load static %}
+<!Doctype html>
+<html>
+    <head></head>
+    <body>
+        {% block content %}  
+        <div class="page-section">
+            <h1 class="text-center wow fadeInUp">تعديل بيانات الصفحه الشخصيه</h1>
+            <form class="contact-form mt-5" method="post" enctype="multipart/form-data">
+              {% csrf_token %}
+              <div class="row mb-3">
+                <div class="col-sm-6 py-2 wow fadeInLeft">
+                  <label for="fullName">عنوان</label>
+                  {{form.title}}               
+                </div>
+                <div class="col-sm-6 py-2 wow fadeInLeft">
+                  <label for="fullName">عنوان بالعربي</label>
+                  {{form.title_ar_field}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="subject">صوره</label>
+                  {{form.image}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="subject">صوره خلفيه</label>
+                  {{form.background}}               
+                </div>
+                <div class="col-12 py-2 wow fadeInUp">
+                  <label for="message">وصف</label>
+                  {{form.description}}   
+                 </div>
+                 <div class="col-12 py-2 wow fadeInUp">
+                  <label for="message">وصف بالعربي</label>
+                  {{form.description_ar_field}}   
+                 </div>
+              </div>
+              <button type="submit" class="btn btn-primary wow zoomIn">تعديل</button>
+            </form>
+
+          </div>
+
+  </div>
+   <!-- .banner-home -->
+        {% endblock %}
+    </body>
+</html>
+
+

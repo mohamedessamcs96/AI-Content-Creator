@@ -1,8 +1,17 @@
 {% extends 'index.html' %}
-{% load static %}
-<!Doctype html>
-<html>
-    <head></head>
+
+
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
+  <!-- Bootstrap + JoeBLog main styles -->
+  <link rel="stylesheet" href="{% static 'css/joeblog.css' %}">
+</head>
+
     <body>
         {% block content %}  
 
@@ -46,10 +55,10 @@
                 <label  for="fullName">Is Staff</label>
                 {{register_form.is_staff}}
               </div>     
-              <div class="col-sm-4 form-group">
+              <!-- <div class="col-sm-4 form-group">
                 <label  for="fullName">Is Staff</label>
                 {{register_form.is_staff}}
-              </div>    
+              </div>     -->
               <div class="col-sm-4 form-group">
                 <label for="fullName">Is Admin</label>{{register_form.is_admin}} 
               </div>      
@@ -71,9 +80,17 @@
 </div>
 </section>
 
-        {% endblock %}
-    </body>
-</html>
+
+<script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
+<script src="{% static 'vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+
+<!-- JoeBLog js -->
+<script src="{% static 'js/joeblog.js' %}"></script>
 
 
 
+
+
+  </body>
+
+{% endblock %}

@@ -16,6 +16,7 @@ urlpatterns=[
     path('admin/', admin.site.urls),
     path('content_creator/',views.content_creator,name='contentcreator'),
     path('register/',views.register_request,name='register'),
+    path('signup/',views.signup,name='signup'),
     path('admin_panel/',views.admin_panel,name='adminpanel'),
     path('login/',views.login_request,name='login'),
     path('logout/',views.logout_request,name='logout'),

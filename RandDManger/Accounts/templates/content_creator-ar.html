@@ -50,9 +50,15 @@
             <div class="col-12 form-group">
               {{ form.types }}
           </div>
+          {% if trial %}
                 <div class="col-12 form-group">
-                <button class="btn btn-primary btn-block">Submit</button>
+                <button type="submit" class="btn btn-primary btn-block">Submit</button>
               </div>
+          {%else %}
+              <div class="col-12 form-group">
+                <button type="button" onclick="window.location.href='' " class="btn btn-primary btn-block">Upgrade</button>
+              </div>
+          {%endif%}    
               </div>
      
                   

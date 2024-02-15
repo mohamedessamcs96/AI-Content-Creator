@@ -2,12 +2,12 @@
 <!DOCTYPE html> 
 
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
- 
+  <head>
 
-      </head>
+    <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
+    <!-- Bootstrap + JoeBLog main styles -->
+    <link rel="stylesheet" href="{% static 'css/joeblog.css' %}">
+  </head>
 
     <body>
 
@@ -15,7 +15,7 @@
       
         {% block content %}
         
-x
+
         {% endblock %}
      
 
@@ -24,6 +24,20 @@ x
 <!-- This line includes jQuery -->
 
 
+<script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
+<script src="{% static 'vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+
+<!-- JoeBLog js -->
+<script src="{% static 'js/joeblog.js' %}"></script>
 
     </body>
+
+
+
+
+
+
+
 </html>
+
+

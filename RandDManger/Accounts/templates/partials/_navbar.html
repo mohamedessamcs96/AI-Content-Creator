@@ -44,13 +44,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{% url 'homepage' %}">Home</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/{{language_code}}/register/">Register</a>
-                    </li>
                     {% if user.is_admin or user.is_superuser or user.is_staff%}
                     <li class="nav-item">
                       <a class="nav-link" href="#">Admin Panel</a>
                   </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="/{{language_code}}/register/">Add Staff</a>
+                </li>
                   {%else%}
                   {%endif%}
                     {% if user.is_authenticated %}

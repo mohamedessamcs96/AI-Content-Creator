@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.conf import settings
 from django.contrib.auth.hashers import make_password
+from datetime import datetime,timedelta
 
 # Create your models here.
 
@@ -21,6 +22,8 @@ class UserAdmin(AbstractUser):
     birthdate = models.DateField(null=True)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
+    is_upgraded = models.BooleanField(default=False)
+    last_execution_time = models.DateTimeField(default=datetime.now().date() - timedelta(days=8))
     password1 = models.CharField(max_length=20)
     password2 = models.CharField(max_length=20)
     USERNAME_FIELD = 'username'

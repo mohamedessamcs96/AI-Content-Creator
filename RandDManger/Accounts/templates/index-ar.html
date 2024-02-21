@@ -7,11 +7,22 @@
     <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
     <!-- Bootstrap + JoeBLog main styles -->
     <link rel="stylesheet" href="{% static 'css/joeblog.css' %}">
+    
+
+    <style>
+      
+    </style>
+      
+  
   </head>
 
     <body>
 
-      {% include 'partials/_navbar-ar.html' %}
+
+
+
+
+      {% include 'partials/_navbar.html' %}
       
         {% block content %}
         
@@ -19,10 +30,8 @@
         {% endblock %}
      
 
-        {% include 'partials/_footer-ar.html' %}
+        {% include 'partials/_footer.html' %}
 
-
-<!-- This line includes jQuery -->
 
 
 <script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
@@ -31,13 +40,14 @@
 <!-- JoeBLog js -->
 <script src="{% static 'js/joeblog.js' %}"></script>
 
-</body>
+    </body>
+
+
+
+
+
+
 
 </html>
-
-
-
-
-
 
 

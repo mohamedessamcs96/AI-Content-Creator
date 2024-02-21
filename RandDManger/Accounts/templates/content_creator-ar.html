@@ -10,10 +10,19 @@
   <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
   <!-- Bootstrap + JoeBLog main styles -->
   <link rel="stylesheet" href="{% static 'css/joeblog.css' %}">
+
+      <style>
+      #LoadingButton {
+    display: none;
+}
+    </style>
+
 </head>
 
 {%block content%}
 <body>
+
+
 
 
   <div class="container">
@@ -23,15 +32,13 @@
 
           <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Write your Task</a></h6>
           <hr>
-          <form method="post" enctype="multipart/form-data">
+          <form  method="post" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="form-row">
                 <div class="col-12 form-group">
                     {{ form.subject }}
                 </div>
-                <div class="col-12 form-group">
-                    {{ form.type }}
-                </div>
+
                 <div class="col-12 form-group">
                   {{ form.purpose }}
               </div>
@@ -51,9 +58,23 @@
               {{ form.types }}
           </div>
           {% if trial %}
-                <div class="col-12 form-group">
-                <button type="submit" class="btn btn-primary btn-block">Submit</button>
-              </div>
+          <div class="col-12 form-group">
+            <button id="submitButton" type="submit" class="btn btn-primary btn-block">Submit</button>
+            <button id="LoadingButton" class="btn btn-primary btn-block" type="submit" disabled style="display: none;">
+                <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>
+                Loading...
+            </button>
+        </div>
+        
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script>
+            $(document).ready(function() {
+                $('#submitButton').click(function() {
+                  $(this).hide(); // Hide the submit button when clicked
+                  $('#LoadingButton').show(); // Show the loading button when #submitButton is clicked
+                });
+            });
+        </script>            
           {%else %}
               <div class="col-12 form-group">
                 <button type="button" onclick="window.location.href='' " class="btn btn-primary btn-block">Upgrade</button>
@@ -65,7 +86,7 @@
                  
             
           </form>
-
+              <!-- Spinner Element -->
         </div>
 
 
@@ -111,6 +132,7 @@
     </div>
 </div>
 
+<script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
 
 
 
@@ -127,3 +149,6 @@
   </body>
 
 {% endblock %}
+
+
+

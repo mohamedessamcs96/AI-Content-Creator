@@ -9,7 +9,7 @@ import datetime
 from datetime import datetime, timedelta
 from django.utils import timezone
 from django.shortcuts import get_object_or_404
-
+import re
 from django.contrib.auth.decorators import login_required
 from django.conf.urls import handler404, handler500
 
@@ -21,7 +21,7 @@ from .forms import AdminForm, LoginForm,HomeInfoForm,ContentCreatorForm
 
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page
-
+from .aiapi import content_writer_bot
 
 @login_required(login_url='/ar/login/')
 def admin_panel(request):
@@ -219,6 +219,35 @@ def content_creator(request):
     if request.method == 'POST':
             if form.is_valid():
                 form.save()
+                subject=request.POST['subject']
+                types=request.POST['types']
+                purpose=request.POST['purpose']
+                word_count=request.POST['word_count']
+                message=request.POST['message']
+                target_audience=request.POST['target_audience']
+                style=request.POST['style']
+                question = """Give me an {} in it's format , it's subject  is {} for audience between {} 
+                it's  purpose is {} and the word count should be {} and the message should be {} and it's made for {}
+                """.format(types,subject,target_audience,purpose,word_count,message,style)
+
+                content=content_writer_bot(question)
+                
+                lines = content.content.split('\n')
+                
+                paragraph=[]
+                # Extract the title from the first line
+
+                title = re.sub(r'\*\*(.*?)\*\*', r'\1', lines[0])
+                # Remove the title line from the list
+                lines = lines[1:]
+                for line in lines:
+                    if line.strip():  # Check if the line is not empty
+                        # Remove the bold reqular expressons
+                        clean_text = re.sub(r'\*\*(.*?)\*\*', r'\1', line)
+                        paragraph.append(clean_text)
+
+
+                print(content)
                 task = form.instance
                 usage_queryset = UserAdmin.objects.filter(username=request.user.username)
                 usage_queryset.last_execution_time = datetime.now().date()
@@ -229,9 +258,12 @@ def content_creator(request):
                     # Update the last_execution_time to the current date
                     usage.last_execution_time = datetime.now().date()
                     # Save the changes back to the database
-                    usage.save()                     
-                p = ProjectManger.objects.create(admin=request.user, task=task, results="output")
-                return redirect('/')
+                    usage.save() 
+                language_code = request.path.split('/')[1]  # Extract the first part of the path
+                template_name = 'content.html' if language_code == 'en' else 'content-ar.html'
+                
+                p = ProjectManger.objects.create(admin=request.user, task=task, results=content)
+                return render(request, template_name,{"language_code": language_code,"paragraph":paragraph,"title":title})
             
                         
 

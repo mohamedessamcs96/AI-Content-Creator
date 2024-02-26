@@ -21,7 +21,7 @@ from .forms import AdminForm, LoginForm,HomeInfoForm,ContentCreatorForm
 
 from django.core.cache import cache
 from django.views.decorators.cache import cache_page
-from .aiapi import content_writer_bot
+from .contentwriterbot import ContentWriterBot
 
 @login_required(login_url='/ar/login/')
 def admin_panel(request):
@@ -219,19 +219,12 @@ def content_creator(request):
     if request.method == 'POST':
             if form.is_valid():
                 form.save()
-                subject=request.POST['subject']
-                types=request.POST['types']
-                purpose=request.POST['purpose']
-                word_count=request.POST['word_count']
-                message=request.POST['message']
-                target_audience=request.POST['target_audience']
-                style=request.POST['style']
-                question = """Give me an {} in it's format , it's subject  is {} for audience between {} 
-                it's  purpose is {} and the word count should be {} and the message should be {} and it's made for {}
-                """.format(types,subject,target_audience,purpose,word_count,message,style)
+                bot=ContentWriterBot()
+                response=bot.resample_message(request)
+                content = bot.generate_response(response)  # Generate the response
 
-                content=content_writer_bot(question)
-                
+                print("Bot:")
+                print(content)
                 lines = content.content.split('\n')
                 
                 paragraph=[]
@@ -247,8 +240,7 @@ def content_creator(request):
                         paragraph.append(clean_text)
 
 
-                print(content)
-                task = form.instance
+         
                 usage_queryset = UserAdmin.objects.filter(username=request.user.username)
                 usage_queryset.last_execution_time = datetime.now().date()
                 # Check if any UserAdmin object matches the query
@@ -262,7 +254,7 @@ def content_creator(request):
                 language_code = request.path.split('/')[1]  # Extract the first part of the path
                 template_name = 'content.html' if language_code == 'en' else 'content-ar.html'
                 
-                p = ProjectManger.objects.create(admin=request.user, task=task, results=content)
+                #p = ProjectManger.objects.create(admin=request.user, task=task, results=bot)
                 return render(request, template_name,{"language_code": language_code,"paragraph":paragraph,"title":title})
             
                         

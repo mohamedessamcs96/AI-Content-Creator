@@ -222,7 +222,7 @@ def content_creator(request):
                 bot=ContentWriterBot()
                 response=bot.resample_message(request)
                 content = bot.generate_response(response)  # Generate the response
-
+                
                 print("Bot:")
                 print(content)
                 lines = content.content.split('\n')
@@ -233,6 +233,7 @@ def content_creator(request):
                 title = re.sub(r'\*\*(.*?)\*\*', r'\1', lines[0])
                 # Remove the title line from the list
                 lines = lines[1:]
+                table=bot.format_result(lines)
                 for line in lines:
                     if line.strip():  # Check if the line is not empty
                         # Remove the bold reqular expressons
@@ -255,7 +256,7 @@ def content_creator(request):
                 template_name = 'content.html' if language_code == 'en' else 'content-ar.html'
                 
                 #p = ProjectManger.objects.create(admin=request.user, task=task, results=bot)
-                return render(request, template_name,{"language_code": language_code,"paragraph":paragraph,"title":title})
+                return render(request, template_name,{"language_code": language_code,"paragraph":paragraph,"title":title,"table":table})
             
                         
 

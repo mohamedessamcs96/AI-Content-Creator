@@ -1,0 +1,157 @@
+{% extends 'index.html' %}
+
+
+{%load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <link rel="stylesheet" href="{% static 'vendors/themify-icons/css/themify-icons.css' %}">
+  <!-- Bootstrap + JoeBLog main styles -->
+  <link rel="stylesheet" href="{% static 'css/joeblog.css' %}">
+
+
+  <style>
+    .custom-textarea {
+    width: 300px;
+    height: 200px;
+}
+  </style>
+
+
+</head>
+
+{%block content%}
+<body>
+
+
+
+
+          <!-- Page Header -->
+
+
+        <div class="container">
+          <hr>
+          <div class="page-container">
+              <div class="page-content">
+                <h3 class="card-title mb-4">{{ title }}</h3>
+
+                <!-- <h6 class="title"><a href="#" class="text-dark">{{ title }}</a></h6> -->
+                <hr>
+                <div class="card-footer">
+                 <div class="media">
+                     <img src="{% static 'imgs/robo-removebg-preview.png' %}" class="mr-3 thumb-sm rounded-circle" alt="...">
+                     <div class="media-body">
+                         <h6 class="mt-0">AI BOT</h6>
+                         <p>this is what you are looking throw...</p>
+                        </div></div></div>
+                <div class="col-12 form-group">
+                        <p>{{homeinfo.description}}</p>
+            
+                        <!-- First line as header -->
+                        <!-- <img src="data:image/jpeg;base64,{{ img_str }}" alt="Your Image"> -->
+            
+            
+                        {% if content_type|lower == "social media post content" %}
+                        <br>
+                        <div class="card">
+                          <div class="card-header pt-0">
+                              <div class="blog-media mb-4">
+
+                                <img src="data:image/jpeg;base64,{{ img_str }}" alt="Your Image">
+                                <a href="#" class="badge badge-primary">#Salupt</a> 
+                              </div>  
+                   
+                            </div>
+                              </div>
+                        <!-- <img src="data:image/jpeg;base64,{{ img_str }}" alt="Your Image"> -->
+                        <br>
+                        {% for p in paragraph %}
+                        <p style="text-align: left;">{{ p }}</p>
+                         {% endfor %}
+                         <!-- {{paragraph}} -->
+            
+                        {% elif content_type|lower == "video content script" %}
+                        <!-- <img src="data:image/jpeg;base64,{{ img_str }}" alt="Your Image"> -->
+
+          
+                          {{table|safe}}
+            
+                        {%else %}
+                        <h3>{{ title }}</h3>
+                        {% for p in paragraph %}
+                            <p style="text-align: left;">{{ p }}</p>
+                        {% endfor %}
+                        data:image/jpeg;base64,{{ img_str }}
+                        <img src="data:image/jpeg;base64,{{ img_str }}" alt="Your Image">
+            
+            
+            
+                        {% endif %}
+                        <h6 class="sidebar-title section-title mb-4 mt-3">Tool Bar</h6>
+
+                        <!-- <p>{{content.content}}</p> -->
+                        <button class="btn btn-primary" id="reloadButton">Generate</button>
+                        <a class="btn btn-primary" href="{% url 'createreport' script    %}"><span >Export PDF</span></a>
+                        <a class="btn btn-primary" href="data:image/jpeg;base64,{{ img_str }}" download>
+                          Download Image
+                         </a>
+                        <script>
+                          // Attach click event handler to the reload button
+                          document.getElementById('reloadButton').addEventListener('click', function() {
+                            location.reload();
+                          });
+
+                        
+                        </script>
+                      </div>
+                      <div class="meta">
+                      </div>
+                    
+           
+                        
+                       
+                              <!-- Spinner Element -->
+              </div>
+      
+      
+            
+          </div>
+      </div>
+      
+  <!-- End Of Page Header -->
+
+
+
+           
+      
+           
+     
+        </div>
+    </div>
+</div> 
+
+
+
+<!-- <script>
+  // Hide the progress bar when the page loads completely
+  window.addEventListener('load', function() {
+    document.getElementById('progress').style.display = 'none';
+  });
+</script> --> 
+
+
+<script src="{% static 'vendors/jquery/jquery-3.4.1.js' %}"></script>
+<script src="{% static 'vendors/bootstrap/bootstrap.bundle.js' %}"></script>
+
+<!-- JoeBLog js -->
+<script src="{% static 'js/joeblog.js' %}"></script>
+
+
+
+
+
+  </body>
+
+{% endblock %}

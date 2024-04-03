@@ -1,0 +1,31 @@
+{% extends 'index.html' %}
+{% load static %}
+<!Doctype html>
+<html>
+    <head></head>
+    <body>
+<!-- Industrial section start-->
+{% block content %}        
+
+<div class="page-section pt-5">
+    <div class="container">
+      <div class="row">
+            <div class="col-md-6">
+                <div class="image_1 padding_0"><img src="{% static 'img/notallowed.gif' %}"></div>
+            </div>
+            <div class="col-md-6">
+                <div class="job_section_2">
+                    <h1 class="jobs_text"> Not Allowed to join this Page</h1>
+                    <h1 class="jobs_text"> غير مسموح</h1>
+
+                    <p class="dummy_text">Dear {{request.user.username}}! you are not allowed to join this page it allowed only for admins</p>
+                    <div class="apply_bt"><a href="/{{language_code}}/"> Back to Home</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>        {% endblock %}
+    </body>
+</html>
+
+

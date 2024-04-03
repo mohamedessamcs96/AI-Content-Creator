@@ -1,0 +1,81 @@
+{% extends 'index.html' %}
+{% load static %}
+<!Doctype html>
+<html>
+    <head></head>
+    <body>
+        {% block content %}        
+<!-- Industrial section start-->
+<div class="page-section">
+    <div class="container">
+      <h1 class="text-center mb-5 wow fadeInUp">Admin Panel</h1>
+
+                    <h4 class="">Dear {{request.user.username}} Welcome to the Admin Panel!</h4>
+                    <p class="">You can Do the follwing:</p>
+                    <table id="user-table">
+                        <thead>
+                            <tr>
+                                <th>What You can Do</th>
+                                <th>Action</th>
+                           
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if user.is_admin or user.is_superuser %}
+                        <tr>
+                            <td>
+                                <p>Add, Edit or Delete Doctor in your System</p>
+                            </td>
+                            <td>
+                                <a href="/{{language_code}}/add_dr/" class="btn btn-primary wow zoomIn">Add</a>
+                                <a href="/{{language_code}}/dr_page/" class="btn btn-primary wow zoomIn">Edit/Delete</a>    
+                            </td>
+                        </tr>
+                    <tr>
+                        <td>
+                            Add, Edit or Delete Latest Work in your System
+                        </td>
+                        <td>
+                            <a href="/{{language_code}}/add_work/" class="btn btn-primary wow zoomIn">Add</a>
+                            <a href="/{{language_code}}/work_page/" class="btn btn-primary wow zoomIn">Edit/Delete</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Add User
+                        </td>
+                        <td>
+                            <p> <a href="/{{language_code}}/register/" class="btn btn-primary wow zoomIn">Add User</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Edit Home Page
+                        </td>
+                        <td>
+                            <p> <a href="/{{language_code}}/home_info/" class="btn btn-primary wow zoomIn">Edit Home Page</a>
+                        </td>
+                    </tr>
+                    {%endif%}
+                    <tr>
+                        <td>
+                            Check the users Dashboard
+                        </td>
+                        <td>
+                            <a href="/{{language_code}}/contacts_page/" class="btn btn-primary wow zoomIn">Check</a>
+                        </td>
+                    </tr>
+                   
+                    </tbody>
+                    </table>
+                    
+                    <div class="apply_bt"><a href="/en/"> Back to Home</a></div>
+                </div>
+            </div>
+        </div>
+ 
+ {% endblock %}
+    </body>
+</html>
+
+

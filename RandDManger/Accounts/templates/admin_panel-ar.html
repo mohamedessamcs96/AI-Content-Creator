@@ -1,0 +1,83 @@
+{% extends 'index-ar.html' %}
+{% load static %}
+<!Doctype html>
+<html>
+    <head>
+   
+    </head>
+    <body>
+        {% block content %}        
+<!-- Industrial section start-->
+<div class="page-section">
+    <div class="container">
+      <h1 class="text-center mb-5 wow fadeInUp">لوحه الاداره</h1>
+
+                    <h4 class=""> اهلا{{request.user.username}}   في لوحه الاداره </h4>
+                    <p class="">تقدر تعمل الاتي:</p>
+                    <table id="user-table">
+                        <thead>
+                            <tr>
+                                <th style="text-align: right;">الي تقدر تعمله</th>
+                                <th style="text-align: right;">الفعل</th>
+                           
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% if user.is_admin or user.is_superuser %}
+                        <tr>
+                            <td style="text-align: right;">
+                                <p>اضافه تعديل او مسح طبيب من ال نظام</p>
+                            </td>
+                            <td style="text-align: right;">
+                                <a href="/{{language_code}}/add_dr/" class="btn btn-primary wow zoomIn">اضافه</a>
+                                <a href="/{{language_code}}/dr_page/" class="btn btn-primary wow zoomIn">تعديل / مسح </a>    
+                            </td>
+                        </tr>
+                    <tr>
+                        <td style="text-align: right;">
+                            اضافه مسح او تعديل اخر الاعمال من النظام
+                        </td>
+                        <td style="text-align: right;">
+                            <a href="/{{language_code}}/add_work/" class="btn btn-primary wow zoomIn">اضافه</a>
+                            <a href="/{{language_code}}/work_page/" class="btn btn-primary wow zoomIn">مسح/تعديل</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;">
+                           اضافه مستخدم
+                        </td>
+                        <td style="text-align: right;">
+                            <p> <a href="/{{language_code}}/register/" class="btn btn-primary wow zoomIn">اضافه مستخدم</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="text-align: right;">
+                           تعديل الصفحه الرئيسيه
+                        </td>
+                        <td style="text-align: right;">
+                            <p> <a href="/{{language_code}}/home_info/" class="btn btn-primary wow zoomIn">تعديل</a>
+                        </td>
+                    </tr>
+                    {%endif%}
+                    <tr>
+                        <td style="text-align: right;">
+                            الاستعلام عن بيانات العملاء
+                        </td>
+                        <td style="text-align: right;">
+                            <a href="/{{language_code}}/contacts_page/" class="btn btn-primary wow zoomIn">فحص</a>
+                        </td>
+                    </tr>
+                   
+                    </tbody>
+                    </table>
+                    
+                    <div class="apply_bt"><a href="/en/"> العوده الى القائمه الرئيسيه</a></div>
+                </div>
+            </div>
+        </div>
+ 
+ {% endblock %}
+    </body>
+</html>
+
+

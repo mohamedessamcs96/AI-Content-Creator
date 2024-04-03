@@ -1,0 +1,43 @@
+{% extends 'index.html' %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+</style>
+</head>
+<body>
+  {% block content %}  
+  <section class="container">
+    <div class="page-container">
+      <div class="page-content">
+        <div class="card">
+        {% include 'partials/messages.html' %}
+        <h6 class="mt-5 mb-3 text-center"><a href="#" class="text-dark">Login</a></h6>
+                        <hr>
+                        <form method="post" enctype="multipart/form-data">
+                          {% csrf_token %}
+                            <div class="form-row">
+                                <div class="col-12 form-group">
+                                  <label for="fullName">Username</label>
+                                  {{login_form.username}}     
+                                </div>
+                                <div class="col-12 form-group">
+                                  <label for="fullName">Password</label>
+                                  {{login_form.password}}                                
+                                </div>
+                                <p>If you have't an account? <a class="primary" href="/{{language_code}}/signup/" >signup</a> </p>
+                                <div class="form-group col-12">
+                                    <button class="btn btn-primary btn-block">Login</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>        
+        
+      </div>
+    </div>
+    </section>
+  {% endblock %}
+</body>
+</html>
